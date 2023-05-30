@@ -1,7 +1,9 @@
 use std::{env};
 use include_dir::{include_dir, Dir};
 use std::path::{PathBuf};
-mod main_info;
+
+mod imprint_info;
+mod imprint_tools;
 
 struct ReadPathError{details: String}
 
@@ -38,10 +40,11 @@ fn main() {
                 Ok(content) => output(content),
                 Err(error) => println!("{}", error.details)
             };
-    },
-        "-a" | "--about" => main_info::about(),
-        "-v" | "--version" => main_info::version(),
-        "-h" | "--help" => main_info::help(),
+        },
+        "-l" | "--list" => imprint_tools::list_note(&PROJECT_DIR),
+        "-a" | "--about" => imprint_info::about(),
+        "-v" | "--version" => imprint_info::version(),
+        "-h" | "--help" => imprint_info::help(),
         _ => println!("\x1b[31mError\x1b[0m\nSomeething wrong with first parameter\nTry use parameter \"print\" or see info with parametr \"-h\"")
     }
 }

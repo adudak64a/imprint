@@ -46,8 +46,9 @@ imprint -v
 imprint --about
 
 Options:
---help, -h            print help informatiom
---version, -v         increase verbosity
---about, -a           information about tool
+--help, -h      print help informatiom
+--version, -v   increase verbosity
+--about, -a     information about tool
+--list, -l      list all saved notes
 ")
 }
