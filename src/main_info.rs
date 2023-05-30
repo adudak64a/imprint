@@ -1,6 +1,5 @@
 pub fn about(){
-        println!("
-,,,,,,,,,,,,,,,,:+?%#@@@@@@@@#%?+:,,,,,,,,,,,,,,,,
+        println!(",,,,,,,,,,,,,,,,:+?%#@@@@@@@@#%?+:,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,:*S@@@@#%%????%%#@@@@S*:,,,,,,,,,,,,,
 ,,,,,,,,,,,;%@@@S*;,,,,::::,,,,;*S@@@%;,,,,,,,,,,,
 ,,,,,,,,,:%@@#*:,,;*%#@@@@@@#S*;,,:*#@@%:,,,,,,,,,
@@ -29,4 +28,26 @@ pub fn about(){
 -------------------------------------------------
 This is a program for creating your own structure
 of notes and using them in the console!");
-    }
+}
+
+pub fn version(){
+    println!("Imprint  version 0.9.0\n")
+}
+
+pub fn help(){
+    println!("Usage:
+imprint print <your path to note>
+or imprint [OPTION]
+
+Example:
+imprint print ssh keys
+imprint print rsync
+imprint -v
+imprint --about
+
+Options:
+--help, -h            print help informatiom
+--version, -v         increase verbosity
+--about, -a           information about tool
+")
+}

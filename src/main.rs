@@ -1,7 +1,7 @@
 use std::{env};
 use include_dir::{include_dir, Dir};
 use std::path::{PathBuf};
-mod about_info;
+mod main_info;
 
 struct ReadPathError{details: String}
 
@@ -18,7 +18,7 @@ fn make_path<'k>(path_vec: &Vec<String>, project_dir: &Dir<'static>) -> Result<&
     }
     let var2 = path_1.with_extension("txt");
     if project_dir.get_file(&var2).is_some() == false{
-        Err(ReadPathError::new("Looks like this note is not exist"))
+        Err(ReadPathError::new("\x1b[35mOoops\x1b[0m\nLooks like this note is not exist"))
     } else{
         let lib_rs =  project_dir.get_file(&var2).unwrap();
         let content = lib_rs.contents_utf8().unwrap();
@@ -39,8 +39,10 @@ fn main() {
                 Err(error) => println!("{}", error.details)
             };
     },
-        "-a" | "--about" => about_info::about(),
-        _ => println!("Someething wrong with first parameter")
+        "-a" | "--about" => main_info::about(),
+        "-v" | "--version" => main_info::version(),
+        "-h" | "--help" => main_info::help(),
+        _ => println!("\x1b[31mError\x1b[0m\nSomeething wrong with first parameter\nTry use parameter \"print\" or see info with parametr \"-h\"")
     }
 }
 
