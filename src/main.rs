@@ -11,17 +11,17 @@ impl ReadPathError {
     }
 }
 
-fn make_path<'k>(path_vec: &Vec<String>, project_dir: &Dir<'static>) -> Result<&'k str, ReadPathError> {
-    let mut path_1 = PathBuf::new();
-    for i in 2..path_vec.len(){
-        path_1.push(&path_vec[i]);
+fn read_note<'k>(args_vec: &Vec<String>, project_dir: &Dir<'static>) -> Result<&'k str, ReadPathError> {
+    let mut path_to_note = PathBuf::new();
+    for i in 2..args_vec.len(){
+        path_to_note.push(&args_vec[i]);
     }
-    let var2 = path_1.with_extension("txt");
-    if project_dir.get_file(&var2).is_some() == false{
+    let path_file_note = path_to_note.with_extension("txt");
+    if project_dir.get_file(&path_file_note).is_some() == false{
         Err(ReadPathError::new("\x1b[35mOoops\x1b[0m\nLooks like this note is not exist"))
     } else{
-        let lib_rs =  project_dir.get_file(&var2).unwrap();
-        let content = lib_rs.contents_utf8().unwrap();
+        let file_note =  project_dir.get_file(&path_file_note).unwrap();
+        let content = file_note.contents_utf8().unwrap();
         Ok(content)
     }
 }
@@ -30,11 +30,11 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     static PROJECT_DIR: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/src/my_log");
 
-    let first_par: &str= &args[1];
+    let first_arg: &str= &args[1];
 
-    match first_par {
+    match first_arg {
         "print" => {
-            match make_path(&args, &PROJECT_DIR){
+            match read_note(&args, &PROJECT_DIR){
                 Ok(content) => output(content),
                 Err(error) => println!("{}", error.details)
             };
