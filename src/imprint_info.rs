@@ -37,7 +37,7 @@ pub fn version(){
 pub fn help(){
     println!("Usage:
 imprint print <your path to note>
-or imprint [OPTION]
+imprint [OPTION]
 
 Example:
 imprint print ssh keys
@@ -46,9 +46,9 @@ imprint -v
 imprint --about
 
 Options:
---help, -h      print help informatiom
+--help,    -h   print help informatiom
 --version, -v   increase verbosity
---about, -a     information about tool
---list, -l      list all saved notes
+--about,   -a   information about tool
+--list,    -l   list all saved notes
 ")
 }
